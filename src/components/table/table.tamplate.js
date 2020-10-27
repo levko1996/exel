@@ -4,23 +4,30 @@ const CODES = {
 }
 
 // eslint-disable-next-line no-unused-vars
-function toCell() {
+function toCell(_, col) {
 	return `
-		<div class = "cell" contenteditable></div>
+		<div class = "cell" contenteditable data-col="${col}"></div>
 	`
 }
 
 // eslint-disable-next-line no-unused-vars
-function toColumn(col) {
+function toColumn(col, index) {
 	return `
-		<div class="column">${col}</div>
+		<div class="column" data-type="resizeble" data-col="${index}">
+			${col}
+			<div class="col-resize" data-resize='col'></div>
+		</div>
 	`
 }
 
 function createRow(index, content) {
+	const resize = index ? `<div class="row-resize" data-resize='row'></div>` : ''
 	return `
-		<div class="row">
-			<div class = "row-info">${index ? index : ''}</div>
+		<div div class = "row" data-type="resizeble">
+			<div div class = "row-info"">
+				${index ? index : ''}
+				${resize}
+			</div>
 			<div class = "row-data">${content}</div>
 		</div>
 	`

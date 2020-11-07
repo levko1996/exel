@@ -13,7 +13,7 @@ class Dom {
 	}
 
 	text(text) {
-		if (typeof text === 'string') {
+		if (typeof text !== 'undefined') {
 			this.$el.textContent = text
 			return this
 		}
@@ -89,6 +89,21 @@ class Dom {
 	}
 	css(style = {}) {
 		Object.keys(style).forEach(key => this.$el.style[key] = style[key])
+	}
+
+	attr(name, value) {
+		if (value) {
+			this.$el.setAttribute(name, value)
+			return this
+		}
+		return this.$el.getAttribute(name)
+	}
+
+	getStyles(styles = []) {
+		return styles.reduce((res, s) => {
+			res[s] = this.$el.style[s]
+			return res
+		}, {})
 	}
 }
 $('div').html('<h1>Test</h1>').clear()

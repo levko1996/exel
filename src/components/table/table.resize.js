@@ -5,11 +5,12 @@ import {
 export function resizeHandler($root, event) {
 	return new Promise(resolve => {
 		const $resizer = $(event.target)
-		const $parent = $resizer.closest('[data-type="resizeble"]')
+		const $parent = $resizer.closest('[data-type="resizable"]')
 		const coords = $parent.getCoords()
 		const type = $resizer.data.resize
 		const sideProp = type === 'col' ? 'bottom' : 'right'
 		let value
+
 		$resizer.css({
 			opacity: 1,
 			[sideProp]: '-5000px'
@@ -30,9 +31,11 @@ export function resizeHandler($root, event) {
 				})
 			}
 		}
+
 		document.onmouseup = () => {
-			document.onmouseup = null
 			document.onmousemove = null
+			document.onmouseup = null
+
 			if (type === 'col') {
 				$parent.css({
 					width: value + 'px'

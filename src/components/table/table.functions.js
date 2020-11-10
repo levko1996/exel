@@ -1,4 +1,6 @@
-import {range} from '@core/utils'
+import {
+	range
+} from '@core/utils'
 
 export function shouldResize(event) {
 	return event.target.dataset.resize
@@ -20,8 +22,10 @@ export function matrix($target, $current) {
 	}, [])
 }
 
-// eslint-disable-next-line no-unused-vars
-export function nextSelection(key, {col, row}) {
+export function nextSelector(key, {
+	col,
+	row
+}) {
 	const MIN_VALUE = 0
 	switch (key) {
 		case 'Enter':
